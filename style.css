@@ -98,7 +98,7 @@ nav{
 .brand span{
   display:block;
   font-family:var(--sans);
-  font-size:11px;
+  font-size:12px;
   letter-spacing:.04em;
   color:var(--sauge-profond);
 }
@@ -242,8 +242,10 @@ section{padding-block:var(--space)}
 .band h2,
 .contact h1{
   overflow-wrap:break-word;
-  hyphens:auto;
+  hyphens:manual;
 }
+.section-head h2,
+.band h2{hyphens:auto}
 .section-head h1{
   font-family:var(--display);
   font-weight:800;
@@ -788,7 +790,7 @@ section{padding-block:var(--space)}
 /* Accompagnements collectifs : fiches de format */
 .format dt{
   margin-top:14px;
-  font-size:12px;
+  font-size:13px;
   font-weight:700;
   letter-spacing:.06em;
   text-transform:uppercase;
@@ -1109,3 +1111,8 @@ nav{padding-top:10px;padding-bottom:6px}
 
 /* Grille d’offres : une dernière carte seule occupe toute la largeur */
 .offer-grid > .offer:last-child:nth-child(odd){grid-column:1/-1}
+
+/* zones tactiles confortables (pied de page, 44px) */
+footer a{display:inline-block;padding:12px 4px;min-height:44px;box-sizing:border-box}
+.footer-nav{gap:0 18px}
+footer p a{padding:10px 4px;min-height:0}
