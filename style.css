@@ -517,6 +517,14 @@ section{padding-block:var(--space)}
 .carnet .card:nth-child(5n+5) h3{color:var(--bleu)}
 .carnet .card:nth-child(5n+5) p{color:var(--doux)}
 
+/* liens lisibles selon le fond de la carte */
+.carnet .card:nth-child(5n+1) .card-link,
+.carnet .card:nth-child(5n+4) .card-link{color:#fff}
+.carnet .card:nth-child(5n+2) .card-link{color:var(--texte)}
+.carnet .card:nth-child(5n+1) .card-link:hover,
+.carnet .card:nth-child(5n+4) .card-link:hover,
+.carnet .card:nth-child(5n+2) .card-link:hover{color:inherit;text-decoration-thickness:2px}
+
 /* =========================================================
    CONTACT
    ========================================================= */
