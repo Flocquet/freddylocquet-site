@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Notes d'entretien</title>
+<meta name="description" content="Carnet de notes pour les entretiens avec dictée et enregistrement audio.">
+<meta name="theme-color" content="#D1382A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Notes entretien">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calme, attentif, professionnel – un carnet de terrain, pas un formulaire administratif
+   IDEA: le carnet d'entretien de Freddy Locquet, dans la charte de freddylocquet.fr
+   PICTURE: l'outil lui-même – le fil des notes et l'enregistreur sont au centre
+   COLOUR and TYPE: fond crème, rouge brique pour titres et boutons, bleu ciel en filets, moutarde ponctuelle ; Montserrat + Open Sans
+   LAYOUT: une colonne calme, cartes blanches, barre d'actions fixe en bas sur mobile */
+:root{color-scheme:light dark;
+  --fond:light-dark(#F6F1E5,#1c1916);--carte:light-dark(#fff,#26221e);--beige:light-dark(#F1EADA,#2e2924);
+  --texte:light-dark(#241F1C,#F1EADA);--doux:light-dark(#5c5650,#bdb4a6);
+  --rouge:light-dark(#D1382A,#E8604F);--rouge-texte:light-dark(#B52F23,#F08a7c);
+  --ciel:light-dark(#9FC9D6,#4A8AA0);--ciel-fonce:#4A8AA0;--profond:light-dark(#2F6F85,#9FC9D6);
+  --jaune:#E8B23C;--ligne:light-dark(rgba(36,31,28,.12),rgba(241,234,218,.14))}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--fond);color:var(--texte);font:16px/1.6 'Open Sans',system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased;padding-bottom:96px}
+header{background:var(--fond);border-bottom:1px solid var(--ligne);padding:14px max(5vw,16px);text-align:center;padding-top:max(14px,env(safe-area-inset-top))}
+.brand{font:700 21px/1.2 Montserrat,system-ui,sans-serif;color:var(--rouge)}
+.brand span{display:block;font:400 12px 'Open Sans',sans-serif;letter-spacing:.04em;color:var(--profond)}
+main{max-width:780px;margin:auto;padding:24px max(4vw,14px)}
+h1{font:800 clamp(28px,6vw,40px)/1.1 Montserrat,sans-serif;color:var(--rouge);margin:6px 0 6px;text-wrap:balance}
+.intro{color:var(--doux);margin:0 0 22px}
+.card{background:var(--carte);border:1px solid var(--ligne);border-top:4px solid var(--ciel);border-radius:20px;padding:clamp(18px,4vw,28px);margin-bottom:18px}
+.card h2{font:700 20px/1.2 Montserrat,sans-serif;color:var(--rouge);margin:0 0 14px}
+.hint{font-size:14px;color:var(--doux);margin:-6px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:14px}
+label{display:block;font-size:14px;font-weight:600;color:var(--profond);margin-bottom:5px}
+input[type=text],input[type=date],input[type=time],input[type=number],select,textarea{width:100%;font:16px 'Open Sans',sans-serif;color:var(--texte);background:var(--fond);border:1px solid var(--ligne);border-radius:12px;padding:11px 13px;min-height:46px}
+textarea{min-height:92px;resize:vertical;line-height:1.5}
+:focus-visible{outline:3px solid var(--ciel-fonce);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 14px 'Open Sans',sans-serif;border:1.5px solid var(--ligne);background:var(--fond);color:var(--texte);border-radius:999px;padding:9px 15px;min-height:44px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 0;margin:0;border-bottom:1px solid var(--ligne);font-size:15px;font-weight:400;color:var(--texte);cursor:pointer}
+.check:last-child{border-bottom:0}
+.check input{width:22px;height:22px;accent-color:var(--rouge);flex:none;margin-top:1px}
+.cta{font:600 14px 'Open Sans',sans-serif;background:var(--rouge);color:#fff;border:2px solid var(--rouge);border-radius:999px;padding:11px 20px;min-height:46px;cursor:pointer;box-shadow:4px 4px 0 var(--ciel-fonce);transition:transform .15s,box-shadow .15s;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+.cta:active,.cta:hover{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ciel-fonce)}
+.cta.sec{background:transparent;color:var(--rouge-texte);box-shadow:none}
+.cta.sec:hover{transform:none}
+.cta.icone{padding:11px 16px}
+.cta:disabled{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+/* saisie + dictée */
+.saisie-tete{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:5px}
+.mic-btn{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ligne);background:var(--fond);color:var(--rouge-texte);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mic-btn[aria-pressed=true]{background:var(--rouge);border-color:var(--rouge);color:#fff;animation:pulse 1.4s infinite}
+.mic-btn:disabled{opacity:.35;cursor:not-allowed}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(209,56,42,.45)}50%{box-shadow:0 0 0 8px rgba(209,56,42,0)}}
+.saisie textarea{min-height:76px}
+.saisie-bas{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:10px}
+.fil{list-style:none;margin:16px 0 0;padding:0}
+.fil li{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;padding:12px 0;border-top:1px solid var(--ligne);align-items:start}
+.heure{font:700 13px Montserrat,sans-serif;color:var(--profond);padding-top:3px}
+.tag{display:inline-block;font:600 12px 'Open Sans',sans-serif;border-radius:999px;padding:1px 9px;margin-bottom:3px;background:var(--beige);color:var(--profond)}
+.tag.verbatim{background:#F6E3B8;color:#6b4a07}.tag.emotion{background:#F7D9D4;color:#8a2a1f}
+.fil .txt{white-space:pre-wrap;overflow-wrap:anywhere}
+.fil .txt.v{font-style:italic}
+.suppr{background:none;border:0;color:var(--doux);font-size:20px;width:40px;height:40px;cursor:pointer;border-radius:50%}
+.suppr:hover{background:var(--beige)}
+.vide{color:var(--doux);font-size:15px;margin:14px 0 0}
+.filtres{margin-top:14px}
+.filtres .chip{padding:5px 12px;min-height:36px;font-size:13px}
+/* échelles */
+.echelle{margin-bottom:16px}
+.echelle-tete{display:flex;justify-content:space-between;align-items:baseline}
+.valeur{font:800 26px Montserrat,sans-serif;color:var(--rouge)}
+.valeur small{font-size:14px;color:var(--doux);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--rouge);height:36px}
+.paire{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;margin-bottom:8px}
+.paire .chip{width:100%}
+.paire .chip.mid{width:auto;padding:9px 12px;font-weight:400}
+/* enregistreur */
+.enregistreur{text-align:center;padding:10px 0 4px}
+.rec-btn{width:84px;height:84px;border-radius:50%;border:none;background:var(--rouge);color:#fff;font-size:30px;cursor:pointer;box-shadow:0 6px 0 var(--ciel-fonce);display:inline-flex;align-items:center;justify-content:center}
+.rec-btn:active{transform:translateY(3px);box-shadow:0 3px 0 var(--ciel-fonce)}
+.rec-btn[aria-pressed=true]{background:#8a2a1f;animation:pulse 1.4s infinite}
+.rec-btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.rec-chrono{font:800 30px Montserrat,sans-serif;color:var(--rouge);margin:14px 0 2px;font-variant-numeric:tabular-nums}
+.rec-statut{color:var(--doux);font-size:14px;margin-bottom:8px}
+.rec-erreur{color:var(--rouge-texte);font-size:14px;margin-top:10px}
+.enregistrements{list-style:none;margin:16px 0 0;padding:0}
+.enregistrements li{border-top:1px solid var(--ligne);padding:14px 0}
+.enr-tete{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.enr-nom{font-weight:600;font-size:14px}
+.enr-meta{color:var(--doux);font-size:13px}
+.enr-actions{display:flex;gap:6px}
+.enr-actions .cta{padding:7px 13px;font-size:13px;min-height:38px}
+audio{width:100%;height:38px;margin-top:6px}
+/* barre d'actions */
+.barre{position:fixed;inset:auto 0 0 0;background:color-mix(in srgb,var(--fond) 94%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--ligne);padding:12px max(4vw,14px) calc(12px + env(safe-area-inset-bottom));display:flex;gap:10px;justify-content:center;flex-wrap:wrap;z-index:5}
+.statut{font-size:13px;color:var(--doux);text-align:center;margin:8px 0 0}
+.install{display:none;background:var(--beige);border-radius:14px;padding:12px 16px;font-size:14px;margin-bottom:16px;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+dialog{border:0;border-radius:20px;padding:24px;max-width:min(420px,92vw);background:var(--carte);color:var(--texte);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+dialog::backdrop{background:rgba(36,31,28,.45)}
+dialog h3{font:700 19px Montserrat,sans-serif;color:var(--rouge);margin:0 0 8px}
+dialog .chips{justify-content:flex-end;margin-top:18px}
+.toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);opacity:0;background:var(--texte);color:var(--fond);padding:10px 18px;border-radius:999px;font-size:14px;transition:.25s;pointer-events:none;z-index:9;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.mic-btn[aria-pressed=true],.rec-btn[aria-pressed=true]{animation:none}}
+@media(max-width:520px){.fil li{grid-template-columns:44px minmax(0,1fr) auto}}
+</style>
+</head>
+<body>
+<header><div class="brand">Freddy LOCQUET<span>Accompagnements · Adolescents · Parents · Professionnels</span></div></header>
+
+<main>
+  <h1>Notes d'entretien</h1>
+  <p class="intro">Le brouillon s'enregistre sur cet appareil au fil de la saisie. Pour garder l'entretien, utilisez « Copier les notes » en fin de séance.</p>
+
+  <div class="install" id="install">
+    <span>Installez cette page sur l'écran d'accueil pour l'ouvrir comme une appli.</span>
+    <button class="cta sec" id="install-btn" type="button">Installer</button>
+  </div>
+
+  <section class="card" aria-labelledby="t-seance">
+    <h2 id="t-seance">La séance</h2>
+    <div class="grid">
+      <div><label for="prenom">Prénom du jeune</label><input type="text" id="prenom" data-k="prenom" placeholder="Ex. Gabin"></div>
+      <div><label for="date">Date</label><input type="date" id="date" data-k="date"></div>
+      <div><label for="lieu">Lieu</label><select id="lieu" data-k="lieu"><option>À domicile</option><option>Au cabinet</option><option>En visio</option><option>Autre</option></select></div>
+      <div><label for="type">Type</label><select id="type" data-k="type"><option>Premier échange</option><option>Séance de suivi</option><option>Bilan</option><option>Entretien parents</option></select></div>
+    </div>
+    <label style="margin-top:14px">Présents</label>
+    <div class="chips" id="presents" data-multi="presents"></div>
+  </section>
+
+  <section class="card" aria-labelledby="t-enr">
+    <h2 id="t-enr">Enregistrement audio</h2>
+    <p class="hint">Reste sur cet appareil. Pensez à demander l'accord des personnes présentes avant de lancer.</p>
+    <div class="enregistreur">
+      <button class="rec-btn" id="rec-toggle" type="button" aria-pressed="false" aria-label="Démarrer l'enregistrement">●</button>
+      <div class="rec-chrono" id="rec-chrono">00:00</div>
+      <div class="rec-statut" id="rec-statut">Prêt à enregistrer</div>
+      <div class="rec-erreur" id="rec-erreur" hidden></div>
+    </div>
+    <ul class="enregistrements" id="enregistrements"></ul>
+  </section>
+
+  <section class="card" aria-labelledby="t-ouv">
+    <h2 id="t-ouv">Ouverture</h2>
+    <p class="hint">Répondre à « il me ferait quoi ? » avant tout.</p>
+    <div id="ouverture"></div>
+  </section>
+
+  <section class="card saisie" aria-labelledby="t-fil">
+    <h2 id="t-fil">Fil de l'entretien</h2>
+    <div class="saisie-tete">
+      <label for="note" style="margin:0">Note rapide</label>
+      <button class="mic-btn" id="dicter" type="button" aria-pressed="false" aria-label="Dicter la note" title="Dicter">🎙️</button>
+    </div>
+    <textarea id="note" placeholder="Ce qu'il dit, ce que j'observe…"></textarea>
+    <div class="saisie-bas">
+      <div class="chips" id="tags" role="group" aria-label="Type de note"></div>
+      <button class="cta" id="ajouter" type="button">Ajouter</button>
+    </div>
+    <div class="chips filtres" id="filtres" role="group" aria-label="Filtrer"></div>
+    <ul class="fil" id="fil"></ul>
+    <p class="vide" id="vide">Aucune note pour l'instant. Astuce : Ctrl + Entrée pour ajouter.</p>
+  </section>
+
+  <section class="card" aria-labelledby="t-rep">
+    <h2 id="t-rep">Repères</h2>
+    <div class="echelle"><div class="echelle-tete"><label for="motiv">Motivation en ce moment</label><span class="valeur" id="v-motiv">–<small>/10</small></span></div><input type="range" id="motiv" data-k="motiv" min="0" max="10" step="1"></div>
+    <div class="echelle"><div class="echelle-tete"><label for="avant">Il y a un an</label><span class="valeur" id="v-avant">–<small>/10</small></span></div><input type="range" id="avant" data-k="avant" min="0" max="10" step="1"></div>
+    <div style="margin-bottom:18px"><label for="point">Pour gagner un point, il faudrait…</label><input type="text" id="point" data-k="point"></div>
+    <label>Plutôt…</label>
+    <div id="paires"></div>
+  </section>
+
+  <section class="card" aria-labelledby="t-obs">
+    <h2 id="t-obs">Observations</h2>
+    <div class="grid">
+      <div><label for="energie">Ce qui lui donne de l'énergie</label><textarea id="energie" data-k="energie"></textarea></div>
+      <div><label for="pese">Ce qui lui pèse</label><textarea id="pese" data-k="pese"></textarea></div>
+    </div>
+    <div style="margin-top:14px"><label for="posture">Posture, émotions, non-verbal</label><textarea id="posture" data-k="posture"></textarea></div>
+  </section>
+
+  <section class="card" aria-labelledby="t-clo">
+    <h2 id="t-clo">Clôture</h2>
+    <label>On continue ?</label>
+    <div class="chips" id="decision" style="margin-bottom:14px"></div>
+    <div class="grid">
+      <div><label for="pourquoi">Ce qui le fait dire oui (ou non)</label><textarea id="pourquoi" data-k="pourquoi"></textarea></div>
+      <div><label for="choix">Ce qu'il choisit pour la suite</label><textarea id="choix" data-k="choix" placeholder="Moment, lieu, sujet…"></textarea></div>
+    </div>
+    <div class="grid" style="margin-top:14px">
+      <div><label for="prochain">Prochain rendez-vous</label><input type="date" id="prochain" data-k="prochain"></div>
+      <div><label for="heure-rdv">Heure</label><input type="time" id="heure-rdv" data-k="heureRdv"></div>
+    </div>
+    <div style="margin-top:14px"><label for="parents">À transmettre aux parents (relu avec lui)</label><textarea id="parents" data-k="parents"></textarea></div>
+    <div style="margin-top:14px"><label for="hypo">Mes hypothèses et pistes (pour moi)</label><textarea id="hypo" data-k="hypo"></textarea></div>
+  </section>
+  <p class="statut" id="statut"></p>
+</main>
+
+<div class="barre">
+  <button class="cta" id="copier" type="button">Copier les notes</button>
+  <button class="cta sec" id="nouveau" type="button">Nouvel entretien</button>
+</div>
+
+<dialog id="confirm"><h3>Commencer un nouvel entretien ?</h3><p>Les notes et la séance en cours seront effacées de cet appareil (les enregistrements audio déjà terminés sont conservés). Pensez à copier les notes d'abord.</p><div class="chips"><button class="cta sec" id="c-non" type="button">Annuler</button><button class="cta" id="c-oui" type="button">Effacer</button></div></dialog>
+<dialog id="confirm-suppr-enr"><h3>Supprimer cet enregistrement ?</h3><p>Cette action est définitive.</p><div class="chips"><button class="cta sec" id="cs-non" type="button">Annuler</button><button class="cta" id="cs-oui" type="button">Supprimer</button></div></dialog>
+<dialog id="copie"><h3>Copiez le texte</h3><p class="hint" style="margin:0 0 10px">La copie automatique n'est pas disponible ici : sélectionnez tout le texte ci-dessous.</p><textarea id="copie-txt" style="min-height:240px"></textarea><div class="chips"><button class="cta" id="copie-ok" type="button">Fermer</button></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+let differe=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();differe=e;document.getElementById('install').style.display='flex'});
+window.addEventListener('appinstalled',()=>{document.getElementById('install').style.display='none'});
+document.getElementById('install-btn').onclick=async()=>{if(!differe)return;differe.prompt();await differe.userChoice;differe=null;document.getElementById('install').style.display='none'};
+</script>
+
+<script>
+{
+const KEY='fl-notes-entretien-v1';
+const TAGS=[['note','Note'],['verbatim','Verbatim'],['emotion','Émotion'],['interet','Intérêt'],['difficulte','Difficulté'],['piste','Piste'],['verifier','À vérifier']];
+const PRESENTS=['Le jeune seul','Mère','Père','Les deux parents','Autre'];
+const OUV=['Je me suis présenté (ni psy, ni prof, je ne décide pas à sa place)','Pas de solution toute faite : on cherche ensemble','Confidentialité et relecture du compte rendu avant les parents','Il a le droit de dire non à la fin'];
+const PAIRES=[['Dehors','Dedans'],['Concevoir','Réaliser'],['Seul','En équipe'],['Varié','Un même projet']];
+const DECISIONS=['Oui','Non','À réfléchir'];
+const $=s=>document.querySelector(s);
+const auj=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const vierge=()=>({date:auj(),lieu:'À domicile',type:'Premier échange',presents:[],ouv:[],notes:[],paires:{},decision:''});
+let st=vierge(),tag='note',filtre='';
+try{const r=localStorage.getItem(KEY);if(r)st=Object.assign(vierge(),JSON.parse(r))}catch(e){}
+let tSave;
+const save=()=>{clearTimeout(tSave);tSave=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(st));$('#statut').textContent='Brouillon enregistré à '+hh()}catch(e){$('#statut').textContent='Enregistrement automatique indisponible : copiez vos notes avant de fermer.'}},300)};
+const hh=()=>new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)};
+
+function champs(){
+  document.querySelectorAll('[data-k]').forEach(el=>{
+    const k=el.dataset.k;
+    if(el.type==='range'){el.value=st[k]??5;maj(el,st[k])}else el.value=st[k]??'';
+    el.oninput=()=>{st[k]=el.value;if(el.type==='range')maj(el,el.value);save()};
+  });
+}
+function maj(el,v){$('#v-'+el.id).innerHTML=(v===undefined||v===''?'–':v)+'<small>/10</small>'}
+function chips(id,liste,estActif,clic){
+  $(id).innerHTML=liste.map((l,i)=>`<button type="button" class="chip" data-i="${i}" aria-pressed="${estActif(l,i)}">${esc(l)}</button>`).join('');
+  $(id).querySelectorAll('.chip').forEach(b=>b.onclick=()=>{clic(liste[b.dataset.i],+b.dataset.i);save()});
+}
+function rendPresents(){chips('#presents',PRESENTS,l=>st.presents.includes(l),l=>{st.presents=st.presents.includes(l)?st.presents.filter(x=>x!==l):[...st.presents,l];rendPresents()})}
+function rendDecision(){chips('#decision',DECISIONS,l=>st.decision===l,l=>{st.decision=st.decision===l?'':l;rendDecision()})}
+function rendTags(){chips('#tags',TAGS.map(t=>t[1]),(l,i)=>TAGS[i][0]===tag,(l,i)=>{tag=TAGS[i][0];rendTags()})}
+function rendOuv(){
+  $('#ouverture').innerHTML=OUV.map((l,i)=>`<label class="check"><input type="checkbox" data-i="${i}" ${st.ouv.includes(i)?'checked':''}><span>${esc(l)}</span></label>`).join('');
+  $('#ouverture').querySelectorAll('input').forEach(c=>c.onchange=()=>{const i=+c.dataset.i;st.ouv=c.checked?[...st.ouv,i]:st.ouv.filter(x=>x!==i);save()});
+}
+function rendPaires(){
+  $('#paires').innerHTML=PAIRES.map((p,i)=>{const v=st.paires[i]||'';return `<div class="paire" data-i="${i}">
+    <button type="button" class="chip" data-v="${esc(p[0])}" aria-pressed="${v===p[0]}">${esc(p[0])}</button>
+    <button type="button" class="chip mid" data-v="Les deux" aria-pressed="${v==='Les deux'}">les deux</button>
+    <button type="button" class="chip" data-v="${esc(p[1])}" aria-pressed="${v===p[1]}">${esc(p[1])}</button></div>`}).join('');
+  $('#paires').querySelectorAll('.paire').forEach(d=>d.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const i=d.dataset.i;st.paires[i]=st.paires[i]===b.dataset.v?'':b.dataset.v;rendPaires();save()}));
+}
+function rendFiltres(){
+  const pres=TAGS.filter(t=>st.notes.some(n=>n.tag===t[0]));
+  if(pres.length<2){$('#filtres').innerHTML='';filtre='';return}
+  const l=[['','Toutes'],...pres];
+  chips('#filtres',l.map(t=>t[1]),(x,i)=>l[i][0]===filtre,(x,i)=>{filtre=l[i][0];rendFil()});
+}
+function rendFil(){
+  const nom=Object.fromEntries(TAGS);
+  const liste=st.notes.map((n,i)=>({...n,i})).filter(n=>!filtre||n.tag===filtre).reverse();
+  $('#fil').innerHTML=liste.map(n=>`<li><span class="heure">${esc(n.h)}</span><div>${n.tag!=='note'?`<span class="tag ${n.tag}">${esc(nom[n.tag])}</span><br>`:''}<span class="txt${n.tag==='verbatim'?' v':''}">${n.tag==='verbatim'?'« '+esc(n.t)+' »':esc(n.t)}</span></div><button class="suppr" type="button" data-i="${n.i}" aria-label="Supprimer la note">×</button></li>`).join('');
+  $('#vide').hidden=st.notes.length>0;
+  $('#fil').querySelectorAll('.suppr').forEach(b=>b.onclick=()=>{st.notes.splice(+b.dataset.i,1);save();rendFil();rendFiltres();toast('Note supprimée')});
+  rendFiltres();
+}
+function ajouter(){
+  const t=$('#note').value.trim();if(!t)return;
+  st.notes.push({h:hh(),tag,t});$('#note').value='';tag='note';rendTags();filtre='';rendFil();save();$('#note').focus();
+}
+$('#ajouter').onclick=ajouter;
+$('#note').onkeydown=e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();ajouter()}};
+
+function texte(){
+  const nom=Object.fromEntries(TAGS),L=[];
+  const d=st.date?new Date(st.date+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}):'';
+  L.push(`NOTES D'ENTRETIEN – ${st.prenom||'(prénom)'}`,`${d} · ${st.lieu} · ${st.type}`);
+  if(st.presents.length)L.push('Présents : '+st.presents.join(', '));
+  L.push('','OUVERTURE');OUV.forEach((o,i)=>L.push(`[${st.ouv.includes(i)?'x':' '}] ${o}`));
+  L.push('','FIL DE L\'ENTRETIEN');
+  if(!st.notes.length)L.push('(aucune note)');
+  st.notes.forEach(n=>L.push(`${n.h} – ${n.tag!=='note'?'['+nom[n.tag]+'] ':''}${n.tag==='verbatim'?'« '+n.t+' »':n.t}`));
+  L.push('','REPÈRES',`Motivation : ${st.motiv??'–'}/10 (il y a un an : ${st.avant??'–'}/10)`);
+  if(st.point)L.push('Pour gagner un point : '+st.point);
+  PAIRES.forEach((p,i)=>{if(st.paires[i])L.push(`${p[0]} / ${p[1]} : ${st.paires[i]}`)});
+  const bloc=(t,v)=>{if(v&&v.trim())L.push('',t,v.trim())};
+  L.push('','OBSERVATIONS');
+  bloc('Ce qui lui donne de l\'énergie :',st.energie);bloc('Ce qui lui pèse :',st.pese);bloc('Posture, émotions, non-verbal :',st.posture);
+  L.push('','CLÔTURE','On continue : '+(st.decision||'–'));
+  bloc('Ce qui le fait dire oui (ou non) :',st.pourquoi);bloc('Ce qu\'il choisit pour la suite :',st.choix);
+  if(st.prochain)L.push('','Prochain rendez-vous : '+new Date(st.prochain+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})+(st.heureRdv?' à '+st.heureRdv:''));
+  bloc('À transmettre aux parents (relu avec lui) :',st.parents);bloc('Mes hypothèses et pistes :',st.hypo);
+  return L.join('\n');
+}
+$('#copier').onclick=async()=>{
+  const t=texte();
+  try{await navigator.clipboard.writeText(t);toast('Notes copiées')}
+  catch(e){$('#copie-txt').value=t;$('#copie').showModal();$('#copie-txt').select()}
+};
+$('#copie-ok').onclick=()=>$('#copie').close();
+$('#nouveau').onclick=()=>$('#confirm').showModal();
+$('#c-non').onclick=()=>$('#confirm').close();
+$('#c-oui').onclick=()=>{st=vierge();try{localStorage.removeItem(KEY)}catch(e){}$('#confirm').close();tout();toast('Nouvel entretien');window.scrollTo(0,0)};
+
+/* ---------- Dictée ---------- */
+const RecoVoix=window.SpeechRecognition||window.webkitSpeechRecognition;
+const btnDicter=$('#dicter'),champNote=$('#note');
+let reco=null,dicteEnCours=false,baseTexte='';
+if(!RecoVoix||!window.isSecureContext){
+  btnDicter.disabled=true;
+  btnDicter.title=!window.isSecureContext?'La dictée demande une connexion sécurisée (https)':'La dictée n\'est pas prise en charge par ce navigateur. Utilisez l\'enregistrement audio ci-dessus.';
+}else{
+  reco=new RecoVoix();
+  reco.lang='fr-FR';reco.continuous=true;reco.interimResults=true;
+  reco.onresult=e=>{
+    let finAjoute='',interim='';
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      const t=e.results[i][0].transcript;
+      if(e.results[i].isFinal)finAjoute+=t+' ';else interim+=t;
+    }
+    if(finAjoute)baseTexte=(baseTexte+' '+finAjoute).trim()+' ';
+    champNote.value=(baseTexte+interim).trim();
+  };
+  reco.onerror=e=>{
+    dicteEnCours=false;btnDicter.setAttribute('aria-pressed','false');
+    if(e.error==='not-allowed'||e.error==='service-not-allowed')toast('Micro refusé : autorisez-le dans les réglages du navigateur');
+    else if(e.error!=='no-speech'&&e.error!=='aborted')toast('Dictée interrompue');
+  };
+  reco.onend=()=>{if(dicteEnCours){try{reco.start()}catch(e){dicteEnCours=false;btnDicter.setAttribute('aria-pressed','false')}}else btnDicter.setAttribute('aria-pressed','false')};
+  btnDicter.onclick=()=>{
+    if(dicteEnCours){dicteEnCours=false;reco.stop();btnDicter.setAttribute('aria-pressed','false')}
+    else{baseTexte=champNote.value?champNote.value+' ':'';try{reco.start();dicteEnCours=true;btnDicter.setAttribute('aria-pressed','true')}catch(e){}}
+  };
+}
+
+/* ---------- Enregistrement audio ---------- */
+const DB_NOM='fl-notes-audio',DB_STORE='enregistrements';
+function ouvrirDB(){return new Promise((res,rej)=>{
+  const r=indexedDB.open(DB_NOM,1);
+  r.onupgradeneeded=()=>{r.result.createObjectStore(DB_STORE,{keyPath:'id'})};
+  r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);
+})}
+async function dbAjouter(enr){const db=await ouvrirDB();return new Promise((res,rej)=>{const t=db.transaction(DB_STORE,'readwrite');t.objectStore(DB_STORE).add(enr);t.oncomplete=()=>res();t.onerror=()=>rej(t.error)})}
+async function dbTout(){const db=await ouvrirDB();return new Promise((res,rej)=>{const r=db.transaction(DB_STORE).objectStore(DB_STORE).getAll();r.onsuccess=()=>res(r.result.sort((a,b)=>b.id-a.id));r.onerror=()=>rej(r.error)})}
+async function dbSupprimer(id){const db=await ouvrirDB();return new Promise((res,rej)=>{const t=db.transaction(DB_STORE,'readwrite');t.objectStore(DB_STORE).delete(id);t.oncomplete=()=>res();t.onerror=()=>rej(t.error)})}
+
+const recToggle=$('#rec-toggle'),recChrono=$('#rec-chrono'),recStatut=$('#rec-statut'),recErreur=$('#rec-erreur');
+let flux=null,recorder=null,morceaux=[],recDebut=0,recMinuteur=null,enregistrementEnCours=false;
+const dureeTxt=ms=>{const s=Math.floor(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+const pasDeMic=!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia)||!window.MediaRecorder;
+if(pasDeMic){
+  recToggle.disabled=true;
+  recStatut.textContent=!window.isSecureContext?'Demande une connexion sécurisée (https)':'Enregistrement non pris en charge par ce navigateur';
+}
+function mimeDispo(){
+  const essais=['audio/mp4','audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus'];
+  return essais.find(m=>window.MediaRecorder&&MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(m))||'';
+}
+async function demarrerRec(){
+  recErreur.hidden=true;
+  try{flux=await navigator.mediaDevices.getUserMedia({audio:true})}
+  catch(e){recErreur.hidden=false;recErreur.textContent='Micro refusé ou indisponible : autorisez l\'accès au micro dans les réglages du navigateur.';return}
+  morceaux=[];
+  const mime=mimeDispo();
+  try{recorder=mime?new MediaRecorder(flux,{mimeType:mime}):new MediaRecorder(flux)}catch(e){recorder=new MediaRecorder(flux)}
+  recorder.ondataavailable=e=>{if(e.data&&e.data.size>0)morceaux.push(e.data)};
+  recorder.onstop=async()=>{
+    flux.getTracks().forEach(t=>t.stop());
+    const blob=new Blob(morceaux,{type:recorder.mimeType||'audio/webm'});
+    const duree=Date.now()-recDebut;
+    if(blob.size>0){
+      const id=Date.now();
+      try{await dbAjouter({id,date:new Date().toISOString(),duree,mime:blob.type,blob});toast('Enregistrement enregistré sur l\'appareil')}
+      catch(e){toast('Impossible d\'enregistrer l\'audio sur cet appareil')}
+      rendEnregistrements();
+    }
+  };
+  recorder.start();recDebut=Date.now();enregistrementEnCours=true;
+  recToggle.setAttribute('aria-pressed','true');recToggle.textContent='■';recToggle.setAttribute('aria-label','Arrêter l\'enregistrement');
+  recStatut.textContent='Enregistrement en cours…';
+  recMinuteur=setInterval(()=>{recChrono.textContent=dureeTxt(Date.now()-recDebut)},250);
+}
+function arreterRec(){
+  if(recorder&&recorder.state!=='inactive')recorder.stop();
+  clearInterval(recMinuteur);enregistrementEnCours=false;
+  recToggle.setAttribute('aria-pressed','false');recToggle.textContent='●';recToggle.setAttribute('aria-label','Démarrer l\'enregistrement');
+  recStatut.textContent='Prêt à enregistrer';recChrono.textContent='00:00';
+}
+recToggle.onclick=()=>{enregistrementEnCours?arreterRec():demarrerRec()};
+
+let idASupprimer=null;
+async function rendEnregistrements(){
+  const liste=$('#enregistrements');
+  let enrs=[];try{enrs=await dbTout()}catch(e){}
+  if(!enrs.length){liste.innerHTML='';return}
+  liste.innerHTML=enrs.map(e=>{
+    const d=new Date(e.date);
+    const ext=(e.mime||'').includes('mp4')?'m4a':(e.mime||'').includes('ogg')?'ogg':'webm';
+    return `<li data-id="${e.id}">
+      <div class="enr-tete">
+        <div><div class="enr-nom">Enregistrement du ${d.toLocaleDateString('fr-FR')}</div><div class="enr-meta">${d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})} · ${dureeTxt(e.duree)}</div></div>
+        <div class="enr-actions">
+          <a class="cta sec" download="entretien-${e.id}.${ext}" data-dl="${e.id}">Télécharger</a>
+          <button class="cta sec" type="button" data-del="${e.id}">Supprimer</button>
+        </div>
+      </div>
+      <audio controls preload="none" data-src="${e.id}"></audio>
+    </li>`;
+  }).join('');
+  liste.querySelectorAll('[data-src]').forEach(a=>{
+    const e=enrs.find(x=>x.id==a.dataset.src);
+    a.src=URL.createObjectURL(e.blob);
+  });
+  liste.querySelectorAll('[data-dl]').forEach(a=>{
+    const e=enrs.find(x=>x.id==a.dataset.dl);
+    a.href=URL.createObjectURL(e.blob);
+  });
+  liste.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{idASupprimer=+b.dataset.del;$('#confirm-suppr-enr').showModal()});
+}
+$('#cs-non').onclick=()=>{idASupprimer=null;$('#confirm-suppr-enr').close()};
+$('#cs-oui').onclick=async()=>{
+  if(idASupprimer!=null){try{await dbSupprimer(idASupprimer);toast('Enregistrement supprimé')}catch(e){}idASupprimer=null;rendEnregistrements()}
+  $('#confirm-suppr-enr').close();
+};
+window.addEventListener('beforeunload',e=>{if(enregistrementEnCours){e.preventDefault();e.returnValue=''}});
+
+function tout(){champs();rendPresents();rendOuv();rendTags();rendPaires();rendDecision();rendFil();rendEnregistrements()}
+tout();
+}
+</script>
+</body>
+</html>
