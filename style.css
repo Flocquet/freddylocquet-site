@@ -223,7 +223,7 @@ section{padding-block:var(--space)}
 /* Paragraphes de lecture (hors composants qui définissent déjà leur style) */
 :where(.container) > p{
   font-size:var(--t-lead);
-  max-width:66ch;
+  max-width:80ch;
   margin-bottom:1.1em;
 }
 :where(.container) > p:last-child{margin-bottom:0}
@@ -571,15 +571,14 @@ section{padding-block:var(--space)}
 .big-quote{
   font-family:var(--display);
   font-weight:800;
-  font-size:clamp(34px,6vw,80px);
-  text-transform:uppercase;
+  font-size:var(--t-h2);
   color:var(--rouge);
-  line-height:1;
+  line-height:1.12;
 }
 .big-quote-sub{
   font-size:var(--t-lead);
   color:var(--doux);
-  max-width:60ch;
+  max-width:72ch;
   margin-top:24px;
 }
 
@@ -646,7 +645,7 @@ section{padding-block:var(--space)}
 .band p{
   color:var(--doux);
   font-size:var(--t-lead);
-  max-width:50ch;
+  max-width:62ch;
   margin:0 auto 32px;
 }
 
@@ -1137,3 +1136,22 @@ footer p a{padding:10px 4px;min-height:0}
 .section-head .lead:has(p + p) p + p{margin-top:0}
 .section-head .lead:has(p + p) p:nth-child(n+2){margin-top:14px}
 @media(max-width:900px){.section-head .lead:has(p + p){column-count:1}}
+
+/* Titre d'article : pleine largeur de l'article */
+.article h1{max-width:none}
+
+/* Contact : l'ancre ne doit pas occuper une case de la grille */
+.contact-form-wrap > a[id]{position:absolute}
+.cabinet-info{text-align:left;max-width:640px;margin:32px auto}
+
+/* Sections à deux paragraphes : deux colonnes */
+.section-head:has(> p ~ p){grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px}
+.section-head:has(> p ~ p) > :is(h1,h2){grid-column:1/-1}
+@media(max-width:900px){.section-head:has(> p ~ p){grid-template-columns:1fr}}
+
+/* Pages légales : mesure plus large */
+.prose p,.mentions p{max-width:75ch}
+.s-intro .container:not(.section-head){column-count:2;column-gap:56px}
+.s-intro .container:not(.section-head) > p{max-width:none;break-inside:avoid;margin-bottom:14px}
+@media(max-width:900px){.s-intro .container:not(.section-head){column-count:1}}
+.article h1{font-size:clamp(28px,3.4vw,42px)}
