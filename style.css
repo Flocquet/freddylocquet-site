@@ -389,7 +389,7 @@ section{padding-block:var(--space)}
    ========================================================= */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
   gap:var(--gap);
 }
 .card{
@@ -1132,7 +1132,7 @@ footer p a{padding:10px 4px;min-height:0}
 .section-head:has(> h2) p{max-width:80ch}
 .section-head .lead{max-width:none}
 .section-head .lead:has(p + p){column-count:2;column-gap:56px}
-.section-head .lead:has(p + p) p{max-width:none;break-inside:avoid}
+.section-head .lead:has(p + p) p{max-width:none}
 .section-head .lead:has(p + p) p + p{margin-top:0}
 .section-head .lead:has(p + p) p:nth-child(n+2){margin-top:14px}
 @media(max-width:900px){.section-head .lead:has(p + p){column-count:1}}
@@ -1152,7 +1152,7 @@ footer p a{padding:10px 4px;min-height:0}
 /* Pages légales : mesure plus large */
 .prose p,.mentions p{max-width:75ch}
 .s-intro .container:not(.section-head){column-count:2;column-gap:56px}
-.s-intro .container:not(.section-head) > p{max-width:none;break-inside:avoid;margin-bottom:14px}
+.s-intro .container:not(.section-head) > p{max-width:none;margin-bottom:14px}
 @media(max-width:900px){.s-intro .container:not(.section-head){column-count:1}}
 .article h1{font-size:clamp(28px,3.4vw,42px)}
 
@@ -1165,7 +1165,7 @@ footer p a{padding:10px 4px;min-height:0}
 .page-parcours .container > p{max-width:none;font-size:var(--t-hero-p)}
 .page-parcours .timeline{max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:28px}
 .page-parcours .textes{column-count:2;column-gap:56px}
-.page-parcours .textes p{max-width:none;break-inside:avoid;font-size:var(--t-lead);margin-bottom:14px}
+.page-parcours .textes p{max-width:none;font-size:var(--t-lead);margin-bottom:14px}
 @media(max-width:900px){
   .page-parcours .timeline{grid-template-columns:1fr}
   .page-parcours .textes{column-count:1}
@@ -1174,3 +1174,17 @@ footer p a{padding:10px 4px;min-height:0}
 .page-parcours .timeline li{padding:22px 26px}
 .page-parcours .timeline li::before{left:26px;top:22px}
 .page-parcours .timeline h3{padding-left:56px;min-height:42px;display:flex;align-items:center;margin-bottom:10px}
+
+/* Quatre cartes : 2 x 2 */
+@media(min-width:701px){.cards.cards-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Introductions à deux paragraphes : même taille que les autres textes de lecture */
+.section-head:has(> p ~ p) p{font-size:var(--t-lead);max-width:none}
+
+/* FAQ : question à gauche, réponse à droite, pleine largeur */
+@media(min-width:901px){
+  .page-faq .cards{grid-template-columns:1fr;gap:16px}
+  .page-faq .card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);column-gap:48px;row-gap:10px;align-items:start;padding:26px 32px}
+  .page-faq .card > h3{grid-column:1;grid-row:1;margin:0}
+  .page-faq .card > :not(h3){grid-column:2;margin:0}
+}
