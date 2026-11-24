@@ -1127,3 +1127,13 @@ footer p a{padding:10px 4px;min-height:0}
 /* Sous-titres de section : plus discrets, et pas de colonne vide */
 .section-head:has(> h2) p{font-size:var(--t-body);max-width:64ch}
 .section-head:not(:has(p)):not(:has(.lead)){grid-template-columns:1fr}
+
+/* Introductions : on occupe la largeur, sans zone vide */
+.section-head p,
+.section-head:has(> h2) p{max-width:80ch}
+.section-head .lead{max-width:none}
+.section-head .lead:has(p + p){column-count:2;column-gap:56px}
+.section-head .lead:has(p + p) p{max-width:none;break-inside:avoid}
+.section-head .lead:has(p + p) p + p{margin-top:0}
+.section-head .lead:has(p + p) p:nth-child(n+2){margin-top:14px}
+@media(max-width:900px){.section-head .lead:has(p + p){column-count:1}}
