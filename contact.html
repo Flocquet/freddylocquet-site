@@ -21,7 +21,7 @@
 
 <link rel="preload" href="fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/open-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=20261124r">
+<link rel="stylesheet" href="style.css?v=20261124s">
 <meta name="theme-color" content="#D1382A">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -34,20 +34,20 @@
 
 <header>
   <nav aria-label="Navigation principale">
-  <a class="brand" href="index.html">
+  <a class="brand" href="/">
     Freddy LOCQUET
     <span>Accompagnements · Adolescents · Parents · Professionnels</span>
   </a>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   <div class="menu" id="menu">
-    <a href="index.html">Accueil</a>
-    <a href="parcours.html">Mon parcours</a>
-    <a href="accompagnements.html">Accompagnements individuels</a>
-    <a href="collectivites.html">Accompagnements collectifs</a>
-    <a class="secondary" href="carnet.html">Carnet</a>
-    <a class="secondary" href="sources.html">Sources</a>
-    <a class="secondary" href="faq.html">FAQ</a>
-    <a href="contact.html" aria-current="page">Contact</a>
+    <a href="/">Accueil</a>
+    <a href="parcours">Mon parcours</a>
+    <a href="accompagnements">Accompagnements individuels</a>
+    <a href="collectivites">Accompagnements collectifs</a>
+    <a class="secondary" href="carnet">Carnet</a>
+    <a class="secondary" href="sources">Sources</a>
+    <a class="secondary" href="faq">FAQ</a>
+    <a href="contact" aria-current="page">Contact</a>
   </div>
   <div class="cta-group">
     <a class="cta" href="https://rdv.freddylocquet.fr/freddy-locquet/premier-entretien">Appel découverte gratuit (15&nbsp;min)</a>
@@ -63,7 +63,7 @@
   <div class="container">
 
     <div class="contact-photo">
-      <img decoding="async" loading="lazy" src="portrait-sourire.jpg" alt="Portrait chaleureux">
+      <picture><source type="image/webp" srcset="portrait-sourire.webp"><img fetchpriority="high" width="864" height="1184" decoding="async" src="portrait-sourire.jpg" alt="Freddy Locquet, sourire, portrait"></picture>
     </div>
 
     <h1>Et si nous commencions par échanger&nbsp;?</h1>
@@ -124,7 +124,7 @@
     </div>
 
     <button class="cta" type="submit">Envoyer mon message</button>
-    <p class="hint">Votre message m’est transmis directement par e-mail&nbsp;; je vous réponds sous 48&nbsp;h ouvrées. Vous pouvez aussi écrire à <a class="lien" href="mailto:contact@freddylocquet.fr">contact@freddylocquet.fr</a>. Vos informations servent uniquement à vous répondre (voir les <a class="lien" href="mentions.html#donnees">mentions légales</a>).</p>
+    <p class="hint">Votre message m’est transmis directement par e-mail&nbsp;; je vous réponds sous 48&nbsp;h ouvrées. Vous pouvez aussi écrire à <a class="lien" href="mailto:contact@freddylocquet.fr">contact@freddylocquet.fr</a>. Vos informations servent uniquement à vous répondre (voir les <a class="lien" href="mentions#donnees">mentions légales</a>).</p>
     <p class="hint" id="f-statut" role="status" aria-live="polite"></p>
   </form>
 
@@ -132,7 +132,7 @@
     <h3 id="infos-titre">Avant d’écrire</h3>
     <ul>
       <li><strong>Premier échange&nbsp;:</strong> gratuit, 15&nbsp;minutes, sans engagement.</li>
-      <li><strong>Séances individuelles&nbsp;:</strong> 60&nbsp;€ l’heure, forfaits dès 165&nbsp;€. Détail sur la page <a class="lien" href="accompagnements.html">Accompagnements individuels</a>.</li>
+      <li><strong>Séances individuelles&nbsp;:</strong> 60&nbsp;€ l’heure, forfaits dès 165&nbsp;€. Détail sur la page <a class="lien" href="accompagnements">Accompagnements individuels</a>.</li>
       <li><strong>Structures et collectivités&nbsp;:</strong> devis sur demande.</li>
       <li><strong>Urgence&nbsp;:</strong> ce formulaire ne convient pas à une situation d’urgence. En cas de danger immédiat, appelez le 15 ou le 112.</li>
     </ul>
@@ -140,7 +140,7 @@
 
 </div>
 
-<p>Une question avant d’écrire&nbsp;? Consultez la <a class="lien" href="faq.html">FAQ</a>, ou découvrez les <a class="lien" href="accompagnements.html">accompagnements individuels</a> et les <a class="lien" href="collectivites.html">accompagnements collectifs</a>.</p>
+<p>Une question avant d’écrire&nbsp;? Consultez la <a class="lien" href="faq">FAQ</a>, ou découvrez les <a class="lien" href="accompagnements">accompagnements individuels</a> et les <a class="lien" href="collectivites">accompagnements collectifs</a>.</p>
 
   </div>
 </section>
@@ -150,18 +150,18 @@
 <footer>
   <img decoding="async" src="avatar.jpg" alt="" loading="lazy" width="84" height="84">
   <div class="footer-nav" role="navigation" aria-label="Plan du site">
-    <a href="index.html">Accueil</a>
-    <a href="parcours.html">Mon parcours</a>
-    <a href="accompagnements.html">Accompagnements individuels</a>
-    <a href="collectivites.html">Accompagnements collectifs</a>
-    <a href="carnet.html">Carnet</a>
-    <a href="sources.html">Sources</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Accueil</a>
+    <a href="parcours">Mon parcours</a>
+    <a href="accompagnements">Accompagnements individuels</a>
+    <a href="collectivites">Accompagnements collectifs</a>
+    <a href="carnet">Carnet</a>
+    <a href="sources">Sources</a>
+    <a href="faq">FAQ</a>
+    <a href="contact">Contact</a>
   </div>
   <p class="footer-contact">Écrire à <a href="mailto:contact@freddylocquet.fr">contact@freddylocquet.fr</a></p>
   <p class="footer-adresse">Cabinet&nbsp;: 22 rue Sainte-Marie, 79200 Le Tallud</p>
-  <p>© Freddy LOCQUET — Accompagnements · Adolescents · Parents · Professionnels <a href="deontologie.html">Charte de déontologie</a> <a href="mentions.html">Mentions légales</a></p>
+  <p>© Freddy LOCQUET — Accompagnements · Adolescents · Parents · Professionnels <a href="deontologie">Charte de déontologie</a> <a href="mentions">Mentions légales</a></p>
 </footer>
 
 <script src="menu.js" defer></script>

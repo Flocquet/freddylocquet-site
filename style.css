@@ -1182,3 +1182,5 @@ footer p a{padding:10px 4px;min-height:0}
 .section-head:has(> h1) .lead,
 .section-head:has(> p ~ p) p{max-width:none}
 .section-head .lead p + p{margin-top:14px}
+
+picture{display:contents}

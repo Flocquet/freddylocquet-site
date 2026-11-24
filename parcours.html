@@ -21,7 +21,7 @@
 
 <link rel="preload" href="fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/open-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=20261124r">
+<link rel="stylesheet" href="style.css?v=20261124s">
 <meta name="theme-color" content="#D1382A">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -34,20 +34,20 @@
 
 <header>
   <nav aria-label="Navigation principale">
-  <a class="brand" href="index.html">
+  <a class="brand" href="/">
     Freddy LOCQUET
     <span>Accompagnements · Adolescents · Parents · Professionnels</span>
   </a>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   <div class="menu" id="menu">
-    <a href="index.html">Accueil</a>
-    <a href="parcours.html" aria-current="page">Mon parcours</a>
-    <a href="accompagnements.html">Accompagnements individuels</a>
-    <a href="collectivites.html">Accompagnements collectifs</a>
-    <a class="secondary" href="carnet.html">Carnet</a>
-    <a class="secondary" href="sources.html">Sources</a>
-    <a class="secondary" href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Accueil</a>
+    <a href="parcours" aria-current="page">Mon parcours</a>
+    <a href="accompagnements">Accompagnements individuels</a>
+    <a href="collectivites">Accompagnements collectifs</a>
+    <a class="secondary" href="carnet">Carnet</a>
+    <a class="secondary" href="sources">Sources</a>
+    <a class="secondary" href="faq">FAQ</a>
+    <a href="contact">Contact</a>
   </div>
   <div class="cta-group">
     <a class="cta" href="https://rdv.freddylocquet.fr/freddy-locquet/premier-entretien">Appel découverte gratuit (15&nbsp;min)</a>
@@ -64,7 +64,7 @@
   <div class="container">
 
     <div class="parcours-photo">
-      <img decoding="async" loading="lazy" src="portrait.jpg" alt="Portrait Freddy Locquet">
+      <picture><source type="image/webp" srcset="portrait.webp"><img fetchpriority="high" width="791" height="1059" decoding="async" src="portrait.jpg" alt="Portrait de Freddy Locquet"></picture>
     </div>
 
     <div class="section-head">
@@ -98,25 +98,25 @@ Mon parcours m’a conduit de l’animation et de la formation BAFA
         <h3>Animation et formation</h3>
         <p>Animation auprès d’enfants et d’adolescents, formation BAFA.</p>
         <p class="appris"><strong>Ce que j’y ai appris&nbsp;:</strong> créer un cadre où chacun ose parler, et laisser vivre un groupe sans l’écraser. En formant des animateurs, j’ai compris que ce qui se transmet le mieux, c’est une façon d’être avec les jeunes.</p>
-        <p class="appris"><strong>Au service de&nbsp;:</strong> <a class="lien" href="collectivites.html#formats">ateliers, groupes de parole et formations d’équipes</a>.</p>
+        <p class="appris"><strong>Au service de&nbsp;:</strong> <a class="lien" href="collectivites#formats">ateliers, groupes de parole et formations d’équipes</a>.</p>
       </li>
       <li>
         <h3>Éducation spécialisée</h3>
         <p>Accompagnement éducatif de jeunes et de familles.</p>
         <p class="appris"><strong>Ce que j’y ai appris&nbsp;:</strong> il n’existe pas de parcours standard. Un comportement dit toujours quelque chose&nbsp;: une difficulté, un besoin, une histoire. J’ai aussi appris à travailler avec le jeune et sa famille, sans chercher de coupable.</p>
-        <p class="appris"><strong>Au service de&nbsp;:</strong> <a class="lien" href="accompagnements.html#seance-individuelle">la séance individuelle</a>, <a class="lien" href="accompagnements.html#accompagnement-parental">l’accompagnement parental</a> et <a class="lien" href="accompagnements.html#seance-famille">la séance en famille</a>.</p>
+        <p class="appris"><strong>Au service de&nbsp;:</strong> <a class="lien" href="accompagnements#seance-individuelle">la séance individuelle</a>, <a class="lien" href="accompagnements#accompagnement-parental">l’accompagnement parental</a> et <a class="lien" href="accompagnements#seance-famille">la séance en famille</a>.</p>
       </li>
       <li>
         <h3>Enseignement</h3>
         <p>Professeur des écoles, puis professeur de collège.</p>
         <p class="appris"><strong>Ce que j’y ai appris&nbsp;:</strong> voir de l’intérieur ce que vivent les élèves et leurs familles autour de l’école&nbsp;: les notes, l’orientation, l’autorité, les écrans. Devant une classe, j’ai appris à expliquer simplement des sujets délicats.</p>
-        <p class="appris"><strong>Au service de&nbsp;:</strong> <a class="lien" href="accompagnements.html#forfait-orientation">l’orientation</a>, ainsi que des <a class="lien" href="collectivites.html#formats">conférences, débats et ateliers pour parents</a>.</p>
+        <p class="appris"><strong>Au service de&nbsp;:</strong> <a class="lien" href="accompagnements#forfait-orientation">l’orientation</a>, ainsi que des <a class="lien" href="collectivites#formats">conférences, débats et ateliers pour parents</a>.</p>
       </li>
       <li>
         <h3>Direction d’établissement</h3>
         <p>Adjoint de direction, puis chef d’établissement d’un ensemble scolaire, de la maternelle à la terminale.</p>
         <p class="appris"><strong>Ce que j’y ai appris&nbsp;:</strong> regarder large. Une situation se pense à l’échelle d’une équipe et d’une institution. J’y ai suivi des enfants à tous les âges et travaillé avec des équipes. Avec les familles, j’ai traversé des situations tendues, où ce qui aide d’abord, c’est un cadre clair.</p>
-        <p class="appris"><strong>Au service de&nbsp;:</strong> <a class="lien" href="accompagnements.html#accompagnement-professionnel">l’accompagnement des professionnels</a> et des <a class="lien" href="collectivites.html#formats">interventions en établissement</a>.</p>
+        <p class="appris"><strong>Au service de&nbsp;:</strong> <a class="lien" href="accompagnements#accompagnement-professionnel">l’accompagnement des professionnels</a> et des <a class="lien" href="collectivites#formats">interventions en établissement</a>.</p>
       </li>
     </ol>
 
@@ -147,7 +147,7 @@ Adolescent, parent ou professionnel, chacun reste acteur de son parcours. Je ne 
 </p>
 
 <p>
-Mes lectures de référence sont rassemblées sur la page <a class="lien" href="sources.html">Sources</a>.
+Mes lectures de référence sont rassemblées sur la page <a class="lien" href="sources">Sources</a>.
 </p>
 </div>
 </div>
@@ -169,18 +169,18 @@ Mes lectures de référence sont rassemblées sur la page <a class="lien" href="
 <footer>
   <img decoding="async" src="avatar.jpg" alt="" loading="lazy" width="84" height="84">
   <div class="footer-nav" role="navigation" aria-label="Plan du site">
-    <a href="index.html">Accueil</a>
-    <a href="parcours.html">Mon parcours</a>
-    <a href="accompagnements.html">Accompagnements individuels</a>
-    <a href="collectivites.html">Accompagnements collectifs</a>
-    <a href="carnet.html">Carnet</a>
-    <a href="sources.html">Sources</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Accueil</a>
+    <a href="parcours">Mon parcours</a>
+    <a href="accompagnements">Accompagnements individuels</a>
+    <a href="collectivites">Accompagnements collectifs</a>
+    <a href="carnet">Carnet</a>
+    <a href="sources">Sources</a>
+    <a href="faq">FAQ</a>
+    <a href="contact">Contact</a>
   </div>
   <p class="footer-contact">Écrire à <a href="mailto:contact@freddylocquet.fr">contact@freddylocquet.fr</a></p>
   <p class="footer-adresse">Cabinet&nbsp;: 22 rue Sainte-Marie, 79200 Le Tallud</p>
-  <p>© Freddy LOCQUET — Accompagnements · Adolescents · Parents · Professionnels <a href="deontologie.html">Charte de déontologie</a> <a href="mentions.html">Mentions légales</a></p>
+  <p>© Freddy LOCQUET — Accompagnements · Adolescents · Parents · Professionnels <a href="deontologie">Charte de déontologie</a> <a href="mentions">Mentions légales</a></p>
 </footer>
 
 <script src="menu.js" defer></script>

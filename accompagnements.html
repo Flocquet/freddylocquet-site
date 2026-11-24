@@ -21,7 +21,7 @@
 
 <link rel="preload" href="fonts/montserrat-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/open-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=20261124r">
+<link rel="stylesheet" href="style.css?v=20261124s">
 <meta name="theme-color" content="#D1382A">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -34,20 +34,20 @@
 
 <header>
   <nav aria-label="Navigation principale">
-  <a class="brand" href="index.html">
+  <a class="brand" href="/">
     Freddy LOCQUET
     <span>Accompagnements · Adolescents · Parents · Professionnels</span>
   </a>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
   <div class="menu" id="menu">
-    <a href="index.html">Accueil</a>
-    <a href="parcours.html">Mon parcours</a>
-    <a href="accompagnements.html" aria-current="page">Accompagnements individuels</a>
-    <a href="collectivites.html">Accompagnements collectifs</a>
-    <a class="secondary" href="carnet.html">Carnet</a>
-    <a class="secondary" href="sources.html">Sources</a>
-    <a class="secondary" href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Accueil</a>
+    <a href="parcours">Mon parcours</a>
+    <a href="accompagnements" aria-current="page">Accompagnements individuels</a>
+    <a href="collectivites">Accompagnements collectifs</a>
+    <a class="secondary" href="carnet">Carnet</a>
+    <a class="secondary" href="sources">Sources</a>
+    <a class="secondary" href="faq">FAQ</a>
+    <a href="contact">Contact</a>
   </div>
   <div class="cta-group">
     <a class="cta" href="https://rdv.freddylocquet.fr/freddy-locquet/premier-entretien">Appel découverte gratuit (15&nbsp;min)</a>
@@ -77,7 +77,7 @@ J’accompagne les enfants, les adolescents, les parents, les familles et les pr
     </div>
 
     <div class="parcours-photo">
-      <img decoding="async" loading="lazy" src="accompagnement.jpg" alt="Freddy Locquet, accompagnement des enfants, adolescents, parents et professionnels">
+      <picture><source type="image/webp" srcset="accompagnement.webp"><img fetchpriority="high" width="1400" height="933" decoding="async" src="accompagnement.jpg" alt="Freddy Locquet, accompagnement des enfants, adolescents, parents et professionnels"></picture>
     </div>
 
   </div>
@@ -90,7 +90,7 @@ J’accompagne les enfants, les adolescents, les parents, les familles et les pr
 
     <div class="section-head">
       <h2>Situations fréquemment rencontrées</h2>
-	  <p>Chaque situation est unique. Voici des questions qui reviennent souvent. Le <a class="lien" href="carnet.html">carnet de terrain</a> en prolonge la réflexion.</p>
+	  <p>Chaque situation est unique. Voici des questions qui reviennent souvent. Le <a class="lien" href="carnet">carnet de terrain</a> en prolonge la réflexion.</p>
     </div>
 
     <div class="cards">
@@ -154,7 +154,7 @@ J’accompagne les enfants, les adolescents, les parents, les familles et les pr
 <h2>Pourquoi cette approche&nbsp;?</h2>
 </div>
 
-<p>Je ne donne pas de conseils prêts à l’emploi. Je prends le temps de comprendre le contexte de chaque personne, puis nous cherchons ensemble des pistes qui ont du sens pour elle. <a class="lien" href="parcours.html">Voir ma manière d’accompagner</a>.</p>
+<p>Je ne donne pas de conseils prêts à l’emploi. Je prends le temps de comprendre le contexte de chaque personne, puis nous cherchons ensemble des pistes qui ont du sens pour elle. <a class="lien" href="parcours">Voir ma manière d’accompagner</a>.</p>
 </div>
 </section>
 
@@ -201,7 +201,7 @@ J’accompagne les enfants, les adolescents, les parents, les familles et les pr
 
     <div class="section-head">
       <h2>Tarifs</h2>
-      <p>Les tarifs sont affichés ici, avant tout contact. TVA non applicable, article 293&nbsp;B du CGI. Déroulé, paiement et annulation&nbsp;: voir la <a class="lien" href="faq.html">FAQ</a>.</p>
+      <p>Les tarifs sont affichés ici, avant tout contact. TVA non applicable, article 293&nbsp;B du CGI. Déroulé, paiement et annulation&nbsp;: voir la <a class="lien" href="faq">FAQ</a>.</p>
     </div>
 
     <div class="cards">
@@ -279,7 +279,7 @@ J’accompagne les enfants, les adolescents, les parents, les familles et les pr
       <li><strong>Limites&nbsp;:</strong> l’accompagnement ne remplace ni un suivi médical, ni un suivi psychologique, et n’établit aucun diagnostic. Aucun résultat n’est garanti&nbsp;: nous faisons régulièrement le point.</li>
     </ul>
 
-    <p class="note">Les formations, réunions, conférences et accompagnements d’équipes ou d’établissements relèvent des <a class="lien" href="collectivites.html">accompagnements collectifs</a>&nbsp;: sur devis.</p>
+    <p class="note">Les formations, réunions, conférences et accompagnements d’équipes ou d’établissements relèvent des <a class="lien" href="collectivites">accompagnements collectifs</a>&nbsp;: sur devis.</p>
 
   </div>
 </section>
@@ -302,18 +302,18 @@ J’accompagne les enfants, les adolescents, les parents, les familles et les pr
 <footer>
   <img decoding="async" src="avatar.jpg" alt="" loading="lazy" width="84" height="84">
   <div class="footer-nav" role="navigation" aria-label="Plan du site">
-    <a href="index.html">Accueil</a>
-    <a href="parcours.html">Mon parcours</a>
-    <a href="accompagnements.html">Accompagnements individuels</a>
-    <a href="collectivites.html">Accompagnements collectifs</a>
-    <a href="carnet.html">Carnet</a>
-    <a href="sources.html">Sources</a>
-    <a href="faq.html">FAQ</a>
-    <a href="contact.html">Contact</a>
+    <a href="/">Accueil</a>
+    <a href="parcours">Mon parcours</a>
+    <a href="accompagnements">Accompagnements individuels</a>
+    <a href="collectivites">Accompagnements collectifs</a>
+    <a href="carnet">Carnet</a>
+    <a href="sources">Sources</a>
+    <a href="faq">FAQ</a>
+    <a href="contact">Contact</a>
   </div>
   <p class="footer-contact">Écrire à <a href="mailto:contact@freddylocquet.fr">contact@freddylocquet.fr</a></p>
   <p class="footer-adresse">Cabinet&nbsp;: 22 rue Sainte-Marie, 79200 Le Tallud</p>
-  <p>© Freddy LOCQUET — Accompagnements · Adolescents · Parents · Professionnels <a href="deontologie.html">Charte de déontologie</a> <a href="mentions.html">Mentions légales</a></p>
+  <p>© Freddy LOCQUET — Accompagnements · Adolescents · Parents · Professionnels <a href="deontologie">Charte de déontologie</a> <a href="mentions">Mentions légales</a></p>
 </footer>
 
 <script src="menu.js" defer></script>
