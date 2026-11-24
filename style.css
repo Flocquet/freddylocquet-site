@@ -245,7 +245,7 @@ section{padding-block:var(--space)}
   hyphens:manual;
 }
 .section-head h2,
-.band h2{hyphens:auto}
+.band h2{hyphens:manual}
 .section-head h1{
   font-family:var(--display);
   font-weight:800;
@@ -1122,3 +1122,8 @@ footer p a{padding:10px 4px;min-height:0}
 /* Fonds de section (remplacent les styles en ligne) */
 .section-blanc{background:var(--blanc)}
 .section-beige{background:var(--beige)}
+.dark .lien{color:#fff}
+
+/* Sous-titres de section : plus discrets, et pas de colonne vide */
+.section-head:has(> h2) p{font-size:var(--t-body);max-width:56ch}
+.section-head:has(> h2):not(:has(p)){grid-template-columns:1fr}

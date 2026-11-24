@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Notes d'entretien</title>
+<title>Notes d’entretien</title>
 <meta name="description" content="Carnet de notes pour les entretiens avec dictée et enregistrement audio.">
 <meta name="theme-color" content="#D1382A">
 <meta name="mobile-web-app-capable" content="yes">
@@ -121,11 +121,11 @@ dialog .chips{justify-content:flex-end;margin-top:18px}
 <header><div class="brand">Freddy LOCQUET<span>Accompagnements · Adolescents · Parents · Professionnels</span></div></header>
 
 <main>
-  <h1>Notes d'entretien</h1>
-  <p class="intro">Le brouillon s'enregistre sur cet appareil au fil de la saisie. Pour garder l'entretien, utilisez « Copier les notes » en fin de séance.</p>
+  <h1>Notes d’entretien</h1>
+  <p class="intro">Le brouillon s’enregistre sur cet appareil au fil de la saisie. Pour garder l’entretien, utilisez «&nbsp;Copier les notes&nbsp;» en fin de séance.</p>
 
   <div class="install" id="install">
-    <span>Installez cette page sur l'écran d'accueil pour l'ouvrir comme une appli.</span>
+    <span>Installez cette page sur l’écran d’accueil pour l’ouvrir comme une appli.</span>
     <button class="cta sec" id="install-btn" type="button">Installer</button>
   </div>
 
@@ -143,7 +143,7 @@ dialog .chips{justify-content:flex-end;margin-top:18px}
 
   <section class="card" aria-labelledby="t-enr">
     <h2 id="t-enr">Enregistrement audio</h2>
-    <p class="hint">Reste sur cet appareil. Pensez à demander l'accord des personnes présentes avant de lancer.</p>
+    <p class="hint">Reste sur cet appareil. Pensez à demander l’accord des personnes présentes avant de lancer.</p>
     <div class="enregistreur">
       <button class="rec-btn" id="rec-toggle" type="button" aria-pressed="false" aria-label="Démarrer l'enregistrement">●</button>
       <div class="rec-chrono" id="rec-chrono">00:00</div>
@@ -155,12 +155,12 @@ dialog .chips{justify-content:flex-end;margin-top:18px}
 
   <section class="card" aria-labelledby="t-ouv">
     <h2 id="t-ouv">Ouverture</h2>
-    <p class="hint">Répondre à « il me ferait quoi ? » avant tout.</p>
+    <p class="hint">Répondre à «&nbsp;il me ferait quoi&nbsp;?&nbsp;» avant tout.</p>
     <div id="ouverture"></div>
   </section>
 
   <section class="card saisie" aria-labelledby="t-fil">
-    <h2 id="t-fil">Fil de l'entretien</h2>
+    <h2 id="t-fil">Fil de l’entretien</h2>
     <div class="saisie-tete">
       <label for="note" style="margin:0">Note rapide</label>
       <button class="mic-btn" id="dicter" type="button" aria-pressed="false" aria-label="Dicter la note" title="Dicter">🎙️</button>
@@ -172,7 +172,7 @@ dialog .chips{justify-content:flex-end;margin-top:18px}
     </div>
     <div class="chips filtres" id="filtres" role="group" aria-label="Filtrer"></div>
     <ul class="fil" id="fil"></ul>
-    <p class="vide" id="vide">Aucune note pour l'instant. Astuce : Ctrl + Entrée pour ajouter.</p>
+    <p class="vide" id="vide">Aucune note pour l’instant. Astuce&nbsp;: Ctrl + Entrée pour ajouter.</p>
   </section>
 
   <section class="card" aria-labelledby="t-rep">
@@ -187,7 +187,7 @@ dialog .chips{justify-content:flex-end;margin-top:18px}
   <section class="card" aria-labelledby="t-obs">
     <h2 id="t-obs">Observations</h2>
     <div class="grid">
-      <div><label for="energie">Ce qui lui donne de l'énergie</label><textarea id="energie" data-k="energie"></textarea></div>
+      <div><label for="energie">Ce qui lui donne de l’énergie</label><textarea id="energie" data-k="energie"></textarea></div>
       <div><label for="pese">Ce qui lui pèse</label><textarea id="pese" data-k="pese"></textarea></div>
     </div>
     <div style="margin-top:14px"><label for="posture">Posture, émotions, non-verbal</label><textarea id="posture" data-k="posture"></textarea></div>
@@ -195,11 +195,11 @@ dialog .chips{justify-content:flex-end;margin-top:18px}
 
   <section class="card" aria-labelledby="t-clo">
     <h2 id="t-clo">Clôture</h2>
-    <label>On continue ?</label>
+    <label>On continue&nbsp;?</label>
     <div class="chips" id="decision" style="margin-bottom:14px"></div>
     <div class="grid">
       <div><label for="pourquoi">Ce qui le fait dire oui (ou non)</label><textarea id="pourquoi" data-k="pourquoi"></textarea></div>
-      <div><label for="choix">Ce qu'il choisit pour la suite</label><textarea id="choix" data-k="choix" placeholder="Moment, lieu, sujet…"></textarea></div>
+      <div><label for="choix">Ce qu’il choisit pour la suite</label><textarea id="choix" data-k="choix" placeholder="Moment, lieu, sujet…"></textarea></div>
     </div>
     <div class="grid" style="margin-top:14px">
       <div><label for="prochain">Prochain rendez-vous</label><input type="date" id="prochain" data-k="prochain"></div>
@@ -216,9 +216,9 @@ dialog .chips{justify-content:flex-end;margin-top:18px}
   <button class="cta sec" id="nouveau" type="button">Nouvel entretien</button>
 </div>
 
-<dialog id="confirm"><h3>Commencer un nouvel entretien ?</h3><p>Les notes et la séance en cours seront effacées de cet appareil (les enregistrements audio déjà terminés sont conservés). Pensez à copier les notes d'abord.</p><div class="chips"><button class="cta sec" id="c-non" type="button">Annuler</button><button class="cta" id="c-oui" type="button">Effacer</button></div></dialog>
-<dialog id="confirm-suppr-enr"><h3>Supprimer cet enregistrement ?</h3><p>Cette action est définitive.</p><div class="chips"><button class="cta sec" id="cs-non" type="button">Annuler</button><button class="cta" id="cs-oui" type="button">Supprimer</button></div></dialog>
-<dialog id="copie"><h3>Copiez le texte</h3><p class="hint" style="margin:0 0 10px">La copie automatique n'est pas disponible ici : sélectionnez tout le texte ci-dessous.</p><textarea id="copie-txt" style="min-height:240px"></textarea><div class="chips"><button class="cta" id="copie-ok" type="button">Fermer</button></div></dialog>
+<dialog id="confirm"><h3>Commencer un nouvel entretien&nbsp;?</h3><p>Les notes et la séance en cours seront effacées de cet appareil (les enregistrements audio déjà terminés sont conservés). Pensez à copier les notes d’abord.</p><div class="chips"><button class="cta sec" id="c-non" type="button">Annuler</button><button class="cta" id="c-oui" type="button">Effacer</button></div></dialog>
+<dialog id="confirm-suppr-enr"><h3>Supprimer cet enregistrement&nbsp;?</h3><p>Cette action est définitive.</p><div class="chips"><button class="cta sec" id="cs-non" type="button">Annuler</button><button class="cta" id="cs-oui" type="button">Supprimer</button></div></dialog>
+<dialog id="copie"><h3>Copiez le texte</h3><p class="hint" style="margin:0 0 10px">La copie automatique n’est pas disponible ici&nbsp;: sélectionnez tout le texte ci-dessous.</p><textarea id="copie-txt" style="min-height:240px"></textarea><div class="chips"><button class="cta" id="copie-ok" type="button">Fermer</button></div></dialog>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
