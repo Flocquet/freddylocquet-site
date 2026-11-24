@@ -41,7 +41,7 @@
 
   /* Espacements */
   --pad:clamp(20px,4vw,34px);
-  --space:clamp(56px,7vw,92px);         /* respiration verticale des sections */
+  --space:clamp(40px,5vw,64px);         /* respiration verticale des sections */
   --gap:24px;                           /* écart entre cartes */
 }
 
@@ -631,7 +631,7 @@ section{padding-block:var(--space)}
 .band{
   background:var(--beige);
   text-align:center;
-  padding:clamp(64px,9vw,110px) 0;
+  padding:clamp(44px,6vw,72px) 0;
 }
 .band h2{
   font-family:var(--display);
@@ -1155,3 +1155,22 @@ footer p a{padding:10px 4px;min-height:0}
 .s-intro .container:not(.section-head) > p{max-width:none;break-inside:avoid;margin-bottom:14px}
 @media(max-width:900px){.s-intro .container:not(.section-head){column-count:1}}
 .article h1{font-size:clamp(28px,3.4vw,42px)}
+
+/* Espacement : plus compact */
+.section-head{margin-bottom:28px}
+.parcours-photo,.carnet-photo{margin-bottom:28px}
+
+/* Page Parcours : tout s'aligne sur la largeur de la photo */
+.page-parcours h1{font-size:clamp(28px,3.4vw,44px)}
+.page-parcours .container > p{max-width:none;font-size:var(--t-hero-p)}
+.page-parcours .timeline{max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:28px}
+.page-parcours .textes{column-count:2;column-gap:56px}
+.page-parcours .textes p{max-width:none;break-inside:avoid;font-size:var(--t-lead);margin-bottom:14px}
+@media(max-width:900px){
+  .page-parcours .timeline{grid-template-columns:1fr}
+  .page-parcours .textes{column-count:1}
+  .page-parcours .container > p{font-size:var(--t-lead)}
+}
+.page-parcours .timeline li{padding:22px 26px}
+.page-parcours .timeline li::before{left:26px;top:22px}
+.page-parcours .timeline h3{padding-left:56px;min-height:42px;display:flex;align-items:center;margin-bottom:10px}
