@@ -1046,9 +1046,9 @@ nav{padding-top:10px;padding-bottom:6px}
   .card:hover{transform:translateY(-4px);box-shadow:0 18px 32px -16px rgba(36,31,28,.28)}
 }
 .prose{margin-bottom:40px}
-.prose p{max-width:none;margin:0 0 1em;font-size:var(--t-body);line-height:1.7}
+.prose p{max-width:none;margin:0 0 1em;font-size:var(--t-lead);line-height:1.7}
 @media(min-width:900px){
-  .prose{columns:2;column-gap:48px;margin-top:8px}
+  .prose{margin-top:8px}
   .prose p{break-inside:avoid}
 }
 @media print{.hero::after,.band::before{display:none}}
@@ -1131,11 +1131,6 @@ footer p a{padding:10px 4px;min-height:0}
 .section-head p,
 .section-head:has(> h2) p{max-width:80ch}
 .section-head .lead{max-width:none}
-.section-head .lead:has(p + p){column-count:2;column-gap:56px}
-.section-head .lead:has(p + p) p{max-width:none}
-.section-head .lead:has(p + p) p + p{margin-top:0}
-.section-head .lead:has(p + p) p:nth-child(n+2){margin-top:14px}
-@media(max-width:900px){.section-head .lead:has(p + p){column-count:1}}
 
 /* Titre d'article : pleine largeur de l'article */
 .article h1{max-width:none}
@@ -1145,15 +1140,10 @@ footer p a{padding:10px 4px;min-height:0}
 .cabinet-info{text-align:left;max-width:640px;margin:32px auto}
 
 /* Sections à deux paragraphes : deux colonnes */
-.section-head:has(> p ~ p){grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px}
-.section-head:has(> p ~ p) > :is(h1,h2){grid-column:1/-1}
-@media(max-width:900px){.section-head:has(> p ~ p){grid-template-columns:1fr}}
 
 /* Pages légales : mesure plus large */
 .prose p,.mentions p{max-width:75ch}
-.s-intro .container:not(.section-head){column-count:2;column-gap:56px}
 .s-intro .container:not(.section-head) > p{max-width:none;margin-bottom:14px}
-@media(max-width:900px){.s-intro .container:not(.section-head){column-count:1}}
 .article h1{font-size:clamp(28px,3.4vw,42px)}
 
 /* Espacement : plus compact */
@@ -1164,11 +1154,9 @@ footer p a{padding:10px 4px;min-height:0}
 .page-parcours h1{font-size:clamp(28px,3.4vw,44px)}
 .page-parcours .container > p{max-width:none;font-size:var(--t-hero-p)}
 .page-parcours .timeline{max-width:none;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:28px}
-.page-parcours .textes{column-count:2;column-gap:56px}
 .page-parcours .textes p{max-width:none;font-size:var(--t-lead);margin-bottom:14px}
 @media(max-width:900px){
   .page-parcours .timeline{grid-template-columns:1fr}
-  .page-parcours .textes{column-count:1}
   .page-parcours .container > p{font-size:var(--t-lead)}
 }
 .page-parcours .timeline li{padding:22px 26px}
@@ -1188,3 +1176,9 @@ footer p a{padding:10px 4px;min-height:0}
   .page-faq .card > h3{grid-column:1;grid-row:1;margin:0}
   .page-faq .card > :not(h3){grid-column:2;margin:0}
 }
+
+/* Introductions : un seul bloc de texte, aligné à gauche sur toute la largeur */
+.section-head:has(> h1) p,
+.section-head:has(> h1) .lead,
+.section-head:has(> p ~ p) p{max-width:none}
+.section-head .lead p + p{margin-top:14px}
