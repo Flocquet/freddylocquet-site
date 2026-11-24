@@ -1142,7 +1142,7 @@ footer p a{padding:10px 4px;min-height:0}
 /* Sections à deux paragraphes : deux colonnes */
 
 /* Pages légales : mesure plus large */
-.prose p,.mentions p{max-width:75ch}
+.mentions p{max-width:75ch}
 .s-intro .container:not(.section-head) > p{max-width:none;margin-bottom:14px}
 .article h1{font-size:clamp(28px,3.4vw,42px)}
 
