@@ -1002,8 +1002,9 @@ footer a{
 
 @media(max-width:600px){
   .card{padding:26px}
-  nav{padding:14px var(--pad);justify-content:center}
+  nav{padding:10px var(--pad);justify-content:center;gap:10px}
   .brand{flex-basis:100%}
+  .brand span{display:none}
   .hero-text h1{font-size:clamp(38px,10vw,64px)}
   .contact-photo img{width:180px;height:180px}
 }
