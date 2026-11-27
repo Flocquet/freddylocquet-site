@@ -1196,3 +1196,11 @@ picture{display:contents}
   .deroule-card{padding:4px 20px}
   .deroule li{grid-template-columns:1fr}
 }
+
+/* Tarifs : trois niveaux */
+.niveau-titre{font-family:var(--display);font-weight:800;font-size:var(--t-h3l);color:var(--texte);margin:40px 0 6px}
+.section-head + .niveau-titre{margin-top:8px}
+.niveau-intro{max-width:none;color:var(--doux);margin:0 0 20px}
+.niveau-titre + .cards{margin-top:20px}
+.cards.forfaits + .niveau-titre,.cards-4 + .niveau-titre{margin-top:44px}
+@media(min-width:701px){.cards.forfaits.solo{grid-template-columns:1fr}}
