@@ -1204,7 +1204,10 @@ picture{display:contents}
 @media(min-width:701px){.cards.forfaits.solo{grid-template-columns:1fr}}
 
 /* Retours à la ligne : équilibrer les textes courts des cartes, titre d'accueil sur 3 lignes */
-.card p,.card li,.card dd,.card-link,.band p{text-wrap:balance}
+.card dd,.card-link,.band p{text-wrap:balance}
+.card p,.card li{text-wrap:pretty}
+.card .prix strong{white-space:nowrap}
+.note{max-width:none}
 .hero-text h1{font-size:clamp(40px,4.2vw,54px)}
 .deroule li{grid-template-columns:minmax(300px,34%) 1fr}
 @media (max-width:700px){.deroule li{grid-template-columns:1fr}}
