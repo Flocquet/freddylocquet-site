@@ -1169,13 +1169,11 @@ footer p a{padding:10px 4px;min-height:0}
 /* Introductions à deux paragraphes : même taille que les autres textes de lecture */
 .section-head:has(> p ~ p) p{font-size:var(--t-lead);max-width:none}
 
-/* FAQ : question à gauche, réponse à droite, pleine largeur */
-@media(min-width:901px){
-  .page-faq .cards{grid-template-columns:1fr;gap:16px}
-  .page-faq .card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);column-gap:48px;row-gap:10px;align-items:start;padding:26px 32px}
-  .page-faq .card > h3{grid-column:1;grid-row:1;margin:0}
-  .page-faq .card > :not(h3){grid-column:2;margin:0}
-}
+/* FAQ : question puis réponse, pleine largeur */
+.page-faq .cards{grid-template-columns:1fr;gap:16px}
+.page-faq .card{padding:26px 32px}
+.page-faq .card > *{margin:0;max-width:none}
+.page-faq .card > * + *{margin-top:10px}
 
 /* Introductions : un seul bloc de texte, aligné à gauche sur toute la largeur */
 .section-head:has(> h1) p,
@@ -1204,3 +1202,11 @@ picture{display:contents}
 .niveau-titre + .cards{margin-top:20px}
 .cards.forfaits + .niveau-titre,.cards-4 + .niveau-titre{margin-top:44px}
 @media(min-width:701px){.cards.forfaits.solo{grid-template-columns:1fr}}
+
+/* Retours à la ligne : équilibrer les textes courts des cartes, titre d'accueil sur 3 lignes */
+.card p,.card li,.card dd,.card-link,.band p{text-wrap:balance}
+.hero-text h1{font-size:clamp(40px,4.2vw,54px)}
+.deroule li{grid-template-columns:minmax(300px,34%) 1fr}
+@media (max-width:700px){.deroule li{grid-template-columns:1fr}}
+.card h3{font-size:clamp(19px,1.7vw,22px)}
+.page-faq .card p{text-wrap:pretty}
